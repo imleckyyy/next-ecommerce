@@ -4,6 +4,7 @@ import { Main } from "@/components/Main";
 import { Product } from "@/components/Product";
 
 const DATA = {
+  title: "test",
   description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim ducimus
   quidem vitae nisi aliquam. Consequatur sunt officia molestias a eos
   amet voluptates, placeat quidem alias deleniti ex at dolorem
