@@ -59,14 +59,34 @@ export const Header = () => {
               About
             </Link>
             <Link
-              href="/users/123"
+              href="/products"
               className={twJoin(
                 "block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-teal-500",
-                router.pathname === "/users/123" &&
+                router.pathname.startsWith("/products") &&
                   "border-teal-500 text-teal-500"
               )}
             >
-              Users
+              Products
+            </Link>
+            <Link
+              href="/products-csr"
+              className={twJoin(
+                "block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-teal-500",
+                router.pathname.startsWith("/products-csr") &&
+                  "border-teal-500 text-teal-500"
+              )}
+            >
+              Products CSR
+            </Link>
+            <Link
+              href="/products-ssg"
+              className={twJoin(
+                "block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-teal-500",
+                router.pathname.startsWith("/products-ssg") &&
+                  "border-teal-500 text-teal-500"
+              )}
+            >
+              Products SSG
             </Link>
           </nav>
 

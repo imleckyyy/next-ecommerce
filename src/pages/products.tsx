@@ -1,3 +1,6 @@
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { Main } from "@/components/Main";
 import { ProductListItem } from "@/components/Product";
 import { InferGetStaticPropsType } from "next";
 
@@ -5,22 +8,28 @@ const ProductsPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {data.map((product) => {
-        return (
-          <li key={product.id}>
-            <ProductListItem
-              data={{
-                id: product.id,
-                title: product.title,
-                thumbnailUrl: product.image,
-                thumbnailAlt: product.title,
-              }}
-            />
-          </li>
-        );
-      })}
-    </ul>
+    <div className="flex flex-col justify-center min-h-screen">
+      <Header />
+      <Main>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {data.map((product) => {
+            return (
+              <li key={product.id}>
+                <ProductListItem
+                  data={{
+                    id: product.id,
+                    title: product.title,
+                    thumbnailUrl: product.image,
+                    thumbnailAlt: product.title,
+                  }}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      </Main>
+      <Footer />
+    </div>
   );
 };
 
