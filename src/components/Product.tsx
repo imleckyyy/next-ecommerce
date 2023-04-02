@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Rating } from "./Rating";
+import Image from "next/image";
 
 interface ProductDetails {
   id: number;
@@ -17,11 +18,12 @@ interface ProductProps {
 export const ProductDetails = ({ data }: ProductProps) => {
   return (
     <div className="flex flex-col h-full gap-2 shadow-xl border-2">
-      <div className="max-h-80">
-        <img
-          className="h-full"
+      <div className="relative h-96">
+        <Image
           src={data.thumbnailUrl}
           alt={data.thumbnailAlt}
+          className="max-h-full object-contain"
+          fill
         />
       </div>
       <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
@@ -43,11 +45,12 @@ interface ProductListItemProps {
 export const ProductListItem = ({ data }: ProductListItemProps) => {
   return (
     <div className="flex flex-col h-full gap-2 shadow-xl border-2">
-      <div className="flex justify-center align-center h-60 mb-2 bg-white p-6">
-        <img
+      <div className="flex justify-center align-center relative h-60 mb-2 bg-white p-6">
+        <Image
           src={data.thumbnailUrl}
           alt={data.thumbnailAlt}
-          className="max-h-full"
+          className="max-h-full object-contain"
+          fill
         />
       </div>
       <Link href={`/product/${data.id}`}>

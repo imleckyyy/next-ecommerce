@@ -29,7 +29,7 @@ const ProductsSSG = ({
 
         <Pagination
           currentPage={page}
-          totalPages={20}
+          totalPages={15}
           setPage={setPage}
           path={"/products"}
         />
@@ -53,7 +53,7 @@ const ProductsSSG = ({
 
         <Pagination
           currentPage={page}
-          totalPages={20}
+          totalPages={15}
           setPage={setPage}
           path={"/products"}
         />
