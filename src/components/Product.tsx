@@ -50,7 +50,7 @@ export const ProductListItem = ({ data }: ProductListItemProps) => {
           className="max-h-full"
         />
       </div>
-      <Link href={`/products/${data.id}`}>
+      <Link href={`/product/${data.id}`}>
         <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
       </Link>
     </div>

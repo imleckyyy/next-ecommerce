@@ -9,8 +9,8 @@ const nextConfig = {
         destination: "/products-csr/1",
       },
       {
-        source: "/products-ssr",
-        destination: "/products-ssr/1",
+        source: "/products",
+        destination: "/products/1",
       },
     ];
   },

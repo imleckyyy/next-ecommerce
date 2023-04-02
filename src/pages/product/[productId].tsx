@@ -3,11 +3,17 @@ import { Header } from "@/components/Header";
 import { Main } from "@/components/Main";
 import { ProductDetails } from "@/components/Product";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 const ProductIdPage = ({
   data,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   if (!data) {
     return <div>Coś poszło nie tak</div>;
   }
@@ -17,7 +23,6 @@ const ProductIdPage = ({
       <Header />
       <Main>
         <>
-          <Link href="/products">Powrót</Link>
           <ProductDetails
             data={{
               id: data.id,
@@ -38,7 +43,9 @@ const ProductIdPage = ({
 export default ProductIdPage;
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`https://fakestoreapi.com/products/`);
+  const res = await fetch(
+    `https://naszsklep-api.vercel.app/api/products?take=5&offset=0`
+  );
   const data: StoreApiResponse[] = await res.json();
 
   return {
@@ -49,7 +56,7 @@ export const getStaticPaths = async () => {
         },
       };
     }),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -64,7 +71,7 @@ export const getStaticProps = async ({
   }
 
   const res = await fetch(
-    `https://fakestoreapi.com/products/${params.productId}`
+    `https://naszsklep-api.vercel.app/api/products/${params.productId}`
   );
   const data: StoreApiResponse | null = await res.json();
 

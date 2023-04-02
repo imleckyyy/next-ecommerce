@@ -1,4 +1,4 @@
-import { Pagination } from "@/components/Pagination/Pagination";
+import { Pagination } from "@/components/Pagination";
 import { useRouter } from "next/router";
 import { ProductListItem } from "@/components/Product";
 import { Header } from "@/components/Header";
@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useState } from "react";
 
-const PRODUCTS_PER_PAGE = 25;
+const PRODUCTS_PER_PAGE = 5;
 
 const ProductsSSG = ({
   data,
@@ -29,9 +29,9 @@ const ProductsSSG = ({
 
         <Pagination
           currentPage={page}
-          totalPages={10}
+          totalPages={20}
           setPage={setPage}
-          path={"/products-ssg"}
+          path={"/products"}
         />
 
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
@@ -53,9 +53,9 @@ const ProductsSSG = ({
 
         <Pagination
           currentPage={page}
-          totalPages={10}
+          totalPages={20}
           setPage={setPage}
-          path={"/products-ssg"}
+          path={"/products"}
         />
       </Main>
       <Footer />
@@ -67,24 +67,12 @@ export default ProductsSSG;
 
 export const getStaticPaths = async () => {
   return {
-    paths: [
-      {
-        params: {
-          page: "1",
-        },
+    paths: Array.from({ length: 10 }, (_, i) => i + 1).map((pageIndex) => ({
+      params: {
+        page: pageIndex.toString(),
       },
-      {
-        params: {
-          page: "2",
-        },
-      },
-      {
-        params: {
-          page: "3",
-        },
-      },
-    ],
-    fallback: false,
+    })),
+    fallback: "blocking",
   };
 };
 
@@ -100,7 +88,7 @@ export const getStaticProps = async ({
 
   const res = await fetch(
     `https://naszsklep-api.vercel.app/api/products?take=${PRODUCTS_PER_PAGE}&offset=${
-      Number(params.page) * PRODUCTS_PER_PAGE
+      (Number(params.page) - 1) * PRODUCTS_PER_PAGE
     }`
   );
   const data: StoreApiResponse[] | null = await res.json();

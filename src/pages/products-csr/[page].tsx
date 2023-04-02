@@ -1,4 +1,4 @@
-import { Pagination } from "@/components/Pagination/Pagination";
+import { Pagination } from "@/components/Pagination";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +7,7 @@ import { Header } from "@/components/Header";
 import { Main } from "@/components/Main";
 import { Footer } from "@/components/Footer";
 
-const PRODUCTS_PER_PAGE = 25;
+const PRODUCTS_PER_PAGE = 5;
 
 const ProductsCSR = () => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const ProductsCSR = () => {
     queryFn: async () => {
       const data = await getProducts({
         take: PRODUCTS_PER_PAGE,
-        offset: page * PRODUCTS_PER_PAGE,
+        offset: (page - 1) * PRODUCTS_PER_PAGE,
       });
       return data;
     },
