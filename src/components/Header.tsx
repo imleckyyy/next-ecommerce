@@ -7,155 +7,147 @@ export const Header = () => {
   const router = useRouter();
 
   return (
-    <header
-      aria-label="Site Header"
-      className="bg-gray-50 border-b border-gray-100"
-    >
-      <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between sm:px-6 lg:px-8">
-        <div className="flex items-center gap-4">
-          <button type="button" className="p-2 lg:hidden">
+    <header className="container flex flex-wrap max-w-screen-xl mx-auto gap-1 md:gap-3 pb-2">
+      <div className="flex-1 md:flex-initial h-16 md:h-20 flex items-center order-1">
+        <Link href="/" className="p-2">
+          <Logo />
+        </Link>
+      </div>
+      <div className="w-full md:flex-1 flex items-center md:justify-end order-6 md:order-2">
+        <div className="w-full h-10 md:max-w-sm flex items-center mx-2 md:mx-5 rounded-3xl bg-white">
+          <input
+            type="text"
+            placeholder="Wpisz czego szukasz..."
+            className="text-xs h-10 px-4 rounded-3xl flex-1"
+          ></input>
+          <button type="button" className="p-2 group">
             <svg
-              className="h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
+              strokeWidth="1.5"
               stroke="currentColor"
+              className="w-6 h-6 group-hover:stroke-gray-700"
             >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
               />
             </svg>
           </button>
-
-          <a href="#" className="flex text-teal-600">
-            <Logo />
-          </a>
         </div>
-
-        <div className="flex flex-1 items-center justify-end gap-8">
-          <nav
-            aria-label="Site Nav"
-            className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500"
+      </div>
+      <div className="flex items-center order-2 md:order-3">
+        <Link href="/login" className="p-2 group">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6 group-hover:stroke-gray-700"
           >
-            <Link
-              href="/"
-              className={twJoin(
-                "block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-teal-500",
-                router.pathname === "/" && "border-teal-500 text-teal-500"
-              )}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className={twJoin(
-                "block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-teal-500",
-                router.pathname === "/about" && "border-teal-500 text-teal-500"
-              )}
-            >
-              About
-            </Link>
-            <Link
-              href="/products"
-              className={twJoin(
-                "block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-teal-500",
-                router.pathname.startsWith("/products") &&
-                  "border-teal-500 text-teal-500"
-              )}
-            >
-              Products SSG
-            </Link>
-            <Link
-              href="/products-csr"
-              className={twJoin(
-                "block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-teal-500",
-                router.pathname.startsWith("/products-csr") &&
-                  "border-teal-500 text-teal-500"
-              )}
-            >
-              Products CSR
-            </Link>
-          </nav>
-
-          <div className="flex items-center">
-            <div className="flex items-center divide-x divide-gray-100 border-x border-gray-100">
-              <span>
-                <a
-                  href="/cart"
-                  className="block border-b-4 border-transparent p-6 hover:border-teal-500"
-                >
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                    />
-                  </svg>
-
-                  <span className="sr-only">Cart</span>
-                </a>
-              </span>
-
-              <span>
-                <a
-                  href="/account"
-                  className="block border-b-4 border-transparent p-6 hover:border-teal-500"
-                >
-                  <svg
-                    className="h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-
-                  <span className="sr-only"> Account </span>
-                </a>
-              </span>
-
-              <span className="hidden sm:block">
-                <a
-                  href="/search"
-                  className="block border-b-4 border-transparent p-6 hover:border-teal-500"
-                >
-                  <svg
-                    className="h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-
-                  <span className="sr-only"> Search </span>
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+            />
+          </svg>
+        </Link>
+      </div>
+      <div className="flex items-center order-3 md:order-4">
+        <Link href="/favourites" className="p-2 group">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6 group-hover:stroke-gray-700"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+            />
+          </svg>
+        </Link>
+      </div>
+      <div className="flex items-center order-4 md:order-5">
+        <Link href="/cart" className="p-2 group flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6 md:mr-2 group-hover:stroke-gray-700"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+            />
+          </svg>
+          <span className="hidden md:inline text-xs font-bold">12.54 zł</span>
+        </Link>
+      </div>
+      <div className="flex items-center md:w-full order-5 md:order-6">
+        <button type="button" className="p-2 group md:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6 group-hover:stroke-gray-700"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+        </button>
+        <nav className="hidden md:w-full md:flex flex-wrap gap-5 border-b">
+          <Link
+            href="/"
+            className={twMerge(
+              "block px-2 py-3 border-b-2 border-transparent lowercase text-base font-semibold hover:border-current hover:border-black",
+              router.pathname === "/" && "border-black"
+            )}
+          >
+            Home
+          </Link>
+          <Link
+            href="/about"
+            className={twMerge(
+              "block px-2 py-3 border-b-2 border-transparent lowercase text-base font-semibold hover:border-current hover:border-black",
+              router.pathname === "/about" && "border-black"
+            )}
+          >
+            About
+          </Link>
+          <Link
+            href="/products"
+            className={twMerge(
+              "block px-2 py-3 border-b-2 border-transparent lowercase text-base font-semibold hover:border-current hover:border-black",
+              router.pathname === "/products" && "border-black"
+            )}
+          >
+            Products SSR
+          </Link>
+          <Link
+            href="/products-csr"
+            className={twMerge(
+              "block px-2 py-3 border-b-2 border-transparent lowercase text-base font-semibold hover:border-current hover:border-black",
+              router.pathname === "/products-csr" && "border-black"
+            )}
+          >
+            Products CSR
+          </Link>
+        </nav>
       </div>
     </header>
   );
