@@ -4,6 +4,7 @@ import { Rating } from "./Rating";
 import Image from "next/image";
 import { CustomReactMarkdown } from "./CustomReactMarkdown";
 import { MarkdownResult } from "../../utils";
+import { useCartState } from "./Cart/CartContext";
 
 interface ProductDetails {
   id: string;
@@ -81,6 +82,8 @@ interface ProductListItemProps {
 }
 
 export const ProductListItem = ({ data }: ProductListItemProps) => {
+  const cartState = useCartState();
+
   return (
     <div className="flex flex-col h-full p-4 bg-white rounded-md">
       <div className="flex justify-center align-center relative aspect-[4/3] mb-8">
@@ -101,6 +104,18 @@ export const ProductListItem = ({ data }: ProductListItemProps) => {
           {data.price} PLN
         </div>
       </div>
+      <button
+        onClick={() => {
+          cartState.addItemToCart({
+            id: data.id,
+            title: data.title,
+            price: data.price,
+            count: 1,
+          });
+        }}
+      >
+        Dodaj do koszyka
+      </button>
     </div>
   );
 };

@@ -5,16 +5,19 @@ import type { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
 
 import SEO from "../../next-seo.config";
+import { CartStateContextProvider } from "@/components/Cart/CartContext";
 
 const client = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <DefaultSeo {...SEO} />
-      <QueryClientProvider client={client}>
-        <Component {...pageProps} />
-      </QueryClientProvider>
-    </Layout>
+    <CartStateContextProvider>
+      <Layout>
+        <DefaultSeo {...SEO} />
+        <QueryClientProvider client={client}>
+          <Component {...pageProps} />
+        </QueryClientProvider>
+      </Layout>
+    </CartStateContextProvider>
   );
 }
