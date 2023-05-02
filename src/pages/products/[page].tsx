@@ -104,6 +104,7 @@ interface StoreApiResponse {
     rate: number;
     count: number;
   };
+  longDescription: string;
 }
 
 export type InferGetStaticPathsType<T> = T extends () => Promise<{

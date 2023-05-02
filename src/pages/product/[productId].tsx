@@ -25,6 +25,7 @@ const ProductIdPage = ({
           thumbnailAlt: data.title,
           description: data.description,
           rating: data.rating.rate,
+          longDescription: data.longDescription,
         }}
       />
     </>
@@ -61,6 +62,7 @@ export const getStaticProps = async ({
     };
   }
 
+  // https://naszsklep-api-2yzhlvxav-typeofweb.vercel.app/api/products/
   const res = await fetch(
     `https://naszsklep-api.vercel.app/api/products/${params.productId}`
   );
@@ -74,7 +76,7 @@ export const getStaticProps = async ({
 };
 
 interface StoreApiResponse {
-  id: number;
+  id: string;
   title: string;
   price: number;
   description: string;
@@ -84,6 +86,7 @@ interface StoreApiResponse {
     rate: number;
     count: number;
   };
+  longDescription: string;
 }
 
 export type InferGetStaticPathsType<T> = T extends () => Promise<{

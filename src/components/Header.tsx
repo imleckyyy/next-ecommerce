@@ -136,16 +136,7 @@ export const Header = () => {
               router.pathname === "/products" && "border-black"
             )}
           >
-            Products SSG
-          </Link>
-          <Link
-            href="/products-csr"
-            className={twMerge(
-              "block px-2 py-3 border-b-2 border-transparent lowercase text-base font-semibold hover:border-current hover:border-black",
-              router.pathname === "/products-csr" && "border-black"
-            )}
-          >
-            Products CSR
+            Products
           </Link>
         </nav>
       </div>

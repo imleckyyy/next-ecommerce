@@ -90,7 +90,7 @@ interface GetProductsTypes {
 }
 
 interface StoreApiResponse {
-  id: number;
+  id: string;
   title: string;
   price: number;
   description: string;

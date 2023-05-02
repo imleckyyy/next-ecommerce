@@ -1,14 +1,16 @@
+import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import { Rating } from "./Rating";
 import Image from "next/image";
 
 interface ProductDetails {
-  id: number;
+  id: string;
   title: string;
   description: string;
   thumbnailUrl: string;
   thumbnailAlt: string;
   rating: number;
+  longDescription: string;
 }
 
 interface ProductProps {
@@ -29,6 +31,9 @@ export const ProductDetails = ({ data }: ProductProps) => {
       <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
       <p className="p-4">{data.description}</p>
       <Rating rating={data.rating} />
+      <div className="prose lg:prose-xl p-4">
+        <ReactMarkdown>{data.longDescription}</ReactMarkdown>
+      </div>
     </div>
   );
 };
