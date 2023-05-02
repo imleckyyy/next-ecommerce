@@ -1,9 +1,8 @@
 import { NextSeo } from "next-seo";
-import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import { Rating } from "./Rating";
 import Image from "next/image";
-import Head from "next/head";
+import { CustomReactMarkdown } from "./CustomReactMarkdown";
 
 interface ProductDetails {
   id: string;
@@ -63,7 +62,7 @@ export const ProductDetails = ({ data }: ProductProps) => {
         <div className="col-start-1 col-span-12 row-start-4">
           <h3 className="text-xl mb-6">Opis produktu:</h3>
           <div className="prose lg:prose-xl">
-            <ReactMarkdown>{data.longDescription}</ReactMarkdown>
+            <CustomReactMarkdown>{data.longDescription}</CustomReactMarkdown>
           </div>
         </div>
       </div>
