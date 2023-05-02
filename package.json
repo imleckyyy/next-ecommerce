@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint && yarn prettier --write ."
+    "lint": "next lint"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.27.0",
