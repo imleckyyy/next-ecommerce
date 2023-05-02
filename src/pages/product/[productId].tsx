@@ -1,6 +1,3 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { Main } from "@/components/Main";
 import { ProductDetails } from "@/components/Product";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
@@ -19,24 +16,18 @@ const ProductIdPage = ({
   }
 
   return (
-    <div className="flex flex-col justify-center min-h-screen">
-      <Header />
-      <Main>
-        <>
-          <ProductDetails
-            data={{
-              id: data.id,
-              title: data.title,
-              thumbnailUrl: data.image,
-              thumbnailAlt: data.title,
-              description: data.description,
-              rating: data.rating.rate,
-            }}
-          />
-        </>
-      </Main>
-      <Footer />
-    </div>
+    <>
+      <ProductDetails
+        data={{
+          id: data.id,
+          title: data.title,
+          thumbnailUrl: data.image,
+          thumbnailAlt: data.title,
+          description: data.description,
+          rating: data.rating.rate,
+        }}
+      />
+    </>
   );
 };
 

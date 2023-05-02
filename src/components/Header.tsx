@@ -7,14 +7,14 @@ export const Header = () => {
   const router = useRouter();
 
   return (
-    <header className="container flex flex-wrap max-w-screen-xl mx-auto gap-1 md:gap-3 pb-2">
+    <header className="container flex flex-wrap max-w-screen-xl mx-auto gap-1 md:gap-3 pb-2 border-b md:border-none">
       <div className="flex-1 md:flex-initial h-16 md:h-20 flex items-center order-1">
-        <Link href="/" className="p-2">
+        <Link href="/" className="py-2">
           <Logo />
         </Link>
       </div>
       <div className="w-full md:flex-1 flex items-center md:justify-end order-6 md:order-2">
-        <div className="w-full h-10 md:max-w-sm flex items-center mx-2 md:mx-5 rounded-3xl bg-white">
+        <div className="w-full h-10 md:max-w-sm flex items-center md:mx-5 rounded-3xl bg-white">
           <input
             type="text"
             placeholder="Wpisz czego szukasz..."
@@ -136,7 +136,7 @@ export const Header = () => {
               router.pathname === "/products" && "border-black"
             )}
           >
-            Products SSR
+            Products SSG
           </Link>
           <Link
             href="/products-csr"

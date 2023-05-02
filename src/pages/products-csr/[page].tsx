@@ -3,9 +3,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ProductListItem } from "@/components/Product";
-import { Header } from "@/components/Header";
-import { Main } from "@/components/Main";
-import { Footer } from "@/components/Footer";
 
 const PRODUCTS_PER_PAGE = 5;
 
@@ -38,46 +35,42 @@ const ProductsCSR = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center min-h-screen">
-      <Header />
-      <Main>
-        <h1 className="font-bold text-lg mb-6">
-          Products CSR | Page: {router.query.page}
-        </h1>
+    <>
+      <h1 className="font-bold text-lg mb-6">
+        Products CSR | Page: {router.query.page}
+      </h1>
 
-        <Pagination
-          currentPage={page}
-          totalPages={10}
-          setPage={setPage}
-          path={"/products-csr"}
-        />
+      <Pagination
+        currentPage={page}
+        totalPages={10}
+        setPage={setPage}
+        path={"/products-csr"}
+      />
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-          {data.map((product) => {
-            return (
-              <li key={product.id}>
-                <ProductListItem
-                  data={{
-                    id: product.id,
-                    title: product.title,
-                    thumbnailUrl: product.image,
-                    thumbnailAlt: product.title,
-                  }}
-                />
-              </li>
-            );
-          })}
-        </ul>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+        {data.map((product) => {
+          return (
+            <li key={product.id}>
+              <ProductListItem
+                data={{
+                  id: product.id,
+                  title: product.title,
+                  thumbnailUrl: product.image,
+                  thumbnailAlt: product.title,
+                }}
+              />
+            </li>
+          );
+        })}
+      </ul>
 
-        <Pagination
-          currentPage={page}
-          totalPages={10}
-          setPage={setPage}
-          path={"/products-csr"}
-        />
-      </Main>
-      <Footer />
-    </div>
+      <Pagination
+        currentPage={page}
+        totalPages={10}
+        setPage={setPage}
+        path={"/products-csr"}
+      />
+    </>
   );
 };
 

@@ -1,9 +1,6 @@
 import { Pagination } from "@/components/Pagination";
 import { useRouter } from "next/router";
 import { ProductListItem } from "@/components/Product";
-import { Header } from "@/components/Header";
-import { Main } from "@/components/Main";
-import { Footer } from "@/components/Footer";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useState } from "react";
 
@@ -20,46 +17,42 @@ const ProductsSSG = ({
   }
 
   return (
-    <div className="flex flex-col justify-center min-h-screen">
-      <Header />
-      <Main>
-        <h1 className="font-bold text-lg mb-6">
-          Products SSG | Page: {router.query.page}
-        </h1>
+    <>
+      <h1 className="font-bold text-lg mb-6">
+        Products SSG | Page: {router.query.page}
+      </h1>
 
-        <Pagination
-          currentPage={page}
-          totalPages={15}
-          setPage={setPage}
-          path={"/products"}
-        />
+      <Pagination
+        currentPage={page}
+        totalPages={15}
+        setPage={setPage}
+        path={"/products"}
+      />
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-          {data.map((product) => {
-            return (
-              <li key={product.id}>
-                <ProductListItem
-                  data={{
-                    id: product.id,
-                    title: product.title,
-                    thumbnailUrl: product.image,
-                    thumbnailAlt: product.title,
-                  }}
-                />
-              </li>
-            );
-          })}
-        </ul>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+        {data.map((product) => {
+          return (
+            <li key={product.id}>
+              <ProductListItem
+                data={{
+                  id: product.id,
+                  title: product.title,
+                  thumbnailUrl: product.image,
+                  thumbnailAlt: product.title,
+                }}
+              />
+            </li>
+          );
+        })}
+      </ul>
 
-        <Pagination
-          currentPage={page}
-          totalPages={15}
-          setPage={setPage}
-          path={"/products"}
-        />
-      </Main>
-      <Footer />
-    </div>
+      <Pagination
+        currentPage={page}
+        totalPages={15}
+        setPage={setPage}
+        path={"/products"}
+      />
+    </>
   );
 };
 
