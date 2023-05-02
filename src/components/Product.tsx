@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Rating } from "./Rating";
 import Image from "next/image";
 import { CustomReactMarkdown } from "./CustomReactMarkdown";
+import { MarkdownResult } from "../../utils";
 
 interface ProductDetails {
   id: string;
@@ -11,7 +12,7 @@ interface ProductDetails {
   thumbnailUrl: string;
   thumbnailAlt: string;
   rating: number;
-  longDescription: string;
+  longDescription: MarkdownResult;
   price: number;
 }
 

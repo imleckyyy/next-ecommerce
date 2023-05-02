@@ -1,24 +1,32 @@
+import { MDXRemote } from "next-mdx-remote";
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+import { MarkdownResult } from "../../utils";
 
-export const CustomReactMarkdown = ({ children }: { children: string }) => {
-  let absoluteLinkPartsPattern = /(http|https|www)/;
+export const CustomReactMarkdown = ({
+  children,
+}: {
+  children: MarkdownResult;
+}) => {
+  let absoluteLinkPattern = /^https?:\/\//;
 
   return (
-    <ReactMarkdown
+    <MDXRemote
+      {...children}
       components={{
         a: ({ href, ...props }) => {
           if (!href) {
-            return <a {...props} data-at="test"></a>;
+            return <a {...props}></a>;
           }
-          if (href && absoluteLinkPartsPattern.test(href)) {
-            return <a href={href} {...props} data-at="test"></a>;
+          if (href && absoluteLinkPattern.test(href)) {
+            return <a href={href} {...props} rel="noopener noreferrer"></a>;
           }
-          return <Link href={href} {...props}></Link>;
+          return (
+            <Link href={href}>
+              <a {...props}></a>
+            </Link>
+          );
         },
       }}
-    >
-      {children}
-    </ReactMarkdown>
+    />
   );
 };
