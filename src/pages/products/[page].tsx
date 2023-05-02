@@ -18,7 +18,7 @@ const ProductsSSG = ({
 
   return (
     <>
-      <h1 className="font-bold text-lg mb-6">
+      <h1 className="font-bold text-lg mb-8">
         Products SSG | Page: {router.query.page}
       </h1>
 
@@ -27,9 +27,10 @@ const ProductsSSG = ({
         totalPages={15}
         setPage={setPage}
         path={"/products"}
+        wrapperClass="hidden md:flex mb-10"
       />
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-10">
         {data.map((product) => {
           return (
             <li key={product.id}>
@@ -39,6 +40,7 @@ const ProductsSSG = ({
                   title: product.title,
                   thumbnailUrl: product.image,
                   thumbnailAlt: product.title,
+                  price: product.price,
                 }}
               />
             </li>
@@ -51,6 +53,7 @@ const ProductsSSG = ({
         totalPages={15}
         setPage={setPage}
         path={"/products"}
+        wrapperClass="mb-10"
       />
     </>
   );
@@ -94,7 +97,7 @@ export const getStaticProps = async ({
 };
 
 interface StoreApiResponse {
-  id: number;
+  id: string;
   title: string;
   price: number;
   description: string;

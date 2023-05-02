@@ -13,6 +13,7 @@ interface ProductDetails {
   thumbnailAlt: string;
   rating: number;
   longDescription: string;
+  price: number;
 }
 
 interface ProductProps {
@@ -21,7 +22,7 @@ interface ProductProps {
 
 export const ProductDetails = ({ data }: ProductProps) => {
   return (
-    <div className="flex flex-col h-full gap-2 shadow-xl border-2">
+    <>
       <NextSeo
         title={data.title}
         description={data.description}
@@ -40,27 +41,39 @@ export const ProductDetails = ({ data }: ProductProps) => {
           siteName: "Nasz sklep",
         }}
       />
-      <div className="relative h-96">
-        <Image
-          src={data.thumbnailUrl}
-          alt={data.thumbnailAlt}
-          className="max-h-full object-contain"
-          fill
-        />
+      <div className="w-full grid grid-cols-12 max-w-screen-xl mx-auto gap-y-6 gap-x-10">
+        <div className="col-start-8 col-span-5">
+          <h2 className="text-3xl font-bold">{data.title}</h2>
+        </div>
+        <div className="col-start-1 col-span-7 row-start-1 row-span-3">
+          <div className="relative h-96 bg-white rounded-md">
+            <Image
+              src={data.thumbnailUrl}
+              alt={data.thumbnailAlt}
+              className="max-h-full object-contain"
+              fill
+            />
+          </div>
+        </div>
+        <div className="col-span-5">
+          <div className="font-bold">{data.price} PLN</div>
+          <Rating rating={data.rating} />
+          <p>{data.description}</p>
+        </div>
+        <div className="col-start-1 col-span-12 row-start-4">
+          <h3 className="text-xl mb-6">Opis produktu:</h3>
+          <div className="prose lg:prose-xl">
+            <ReactMarkdown>{data.longDescription}</ReactMarkdown>
+          </div>
+        </div>
       </div>
-      <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
-      <p className="p-4">{data.description}</p>
-      <Rating rating={data.rating} />
-      <div className="prose lg:prose-xl p-4">
-        <ReactMarkdown>{data.longDescription}</ReactMarkdown>
-      </div>
-    </div>
+    </>
   );
 };
 
 type ProductListItem = Pick<
   ProductDetails,
-  "id" | "title" | "thumbnailUrl" | "thumbnailAlt"
+  "id" | "title" | "thumbnailUrl" | "thumbnailAlt" | "price"
 >;
 
 interface ProductListItemProps {
@@ -69,8 +82,8 @@ interface ProductListItemProps {
 
 export const ProductListItem = ({ data }: ProductListItemProps) => {
   return (
-    <div className="flex flex-col h-full gap-2 shadow-xl border-2">
-      <div className="flex justify-center align-center relative h-60 mb-2 bg-white p-6">
+    <div className="flex flex-col h-full p-4 bg-white rounded-md">
+      <div className="flex justify-center align-center relative aspect-[4/3] mb-8">
         <Image
           src={data.thumbnailUrl}
           alt={data.thumbnailAlt}
@@ -78,9 +91,16 @@ export const ProductListItem = ({ data }: ProductListItemProps) => {
           fill
         />
       </div>
-      <Link href={`/product/${data.id}`}>
-        <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
-      </Link>
+      <div className="flex justify-between">
+        <Link href={`/product/${data.id}`}>
+          <h2 className="text-sm text-gray-700 hover:text-gray-500">
+            {data.title}
+          </h2>
+        </Link>
+        <div className="text-sm font-medium text-gray-900">
+          {data.price} PLN
+        </div>
+      </div>
     </div>
   );
 };

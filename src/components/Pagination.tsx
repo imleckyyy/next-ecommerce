@@ -37,6 +37,7 @@ interface PaginationProps {
   totalPages: number;
   setPage: Dispatch<SetStateAction<number>>;
   path: string;
+  wrapperClass: string;
 }
 
 export const Pagination = ({
@@ -44,11 +45,14 @@ export const Pagination = ({
   totalPages,
   setPage,
   path,
+  wrapperClass = "",
 }: PaginationProps) => {
   return (
     <>
-      <nav className="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0">
-        <ul className="hidden md:-mt-px md:flex">
+      <nav
+        className={`border-t border-gray-200 px-4 flex items-center justify-end sm:px-0 ${wrapperClass}`}
+      >
+        <ul className="md:-mt-px flex flex-wrap">
           {currentPage > 1 && (
             <Link
               href={`${path}/${currentPage - 1}`}

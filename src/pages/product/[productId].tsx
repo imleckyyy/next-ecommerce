@@ -25,6 +25,7 @@ const ProductIdPage = ({
           thumbnailAlt: data.title,
           description: data.description,
           rating: data.rating.rate,
+          price: data.price,
           longDescription: data.longDescription,
         }}
       />
